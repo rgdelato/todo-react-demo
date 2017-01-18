@@ -1,13 +1,14 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.js',
 
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: 'bundle.[hash].js'
+		filename: '/bundle.js'
 	},
 
 	module: {
@@ -16,13 +17,26 @@ module.exports = {
 				test: /\.js$/,
 				use: 'babel-loader',
 				exclude: /node_modules/
+			},
+			{
+				test: /\.css$/,
+				loader: ExtractTextPlugin.extract({
+					loader: 'css-loader?sourceMap'
+				}),
+				exclude: /node_modules/
 			}
 		]
 	},
 
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: './public/index.html'
+			template: './public/index.html',
+			hash: true
+		}),
+		new ExtractTextPlugin({
+			filename: 'bundle.css',
+			disable: false,
+			allChunks: true
 		})
 	],
 
