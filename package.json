@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "precommit": "staged_files=$(git diff --name-only --cached) && staged_js_files=$(node precommit-filter.js ${staged_files}) && if [ \"$staged_js_files\" = \"\" ]; then exit 0; fi && prettier --write ${staged_js_files} && git add ${staged_js_files}"
+    "precommit": "staged_files=$(git diff --name-only --cached) && staged_js_files=$(node precommit-filter.js ${staged_files}) && if [ \"$staged_js_files\" == \"\" ]; then exit 0; fi && prettier --write ${staged_js_files} && git add ${staged_js_files}"
   },
   "repository": {
     "type": "git",
