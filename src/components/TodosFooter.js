@@ -79,9 +79,7 @@ const StyledFooter = styled.footer`
   }
 
   @media (max-width: 430px) {
-  	.footer {
-  		height: 50px;
-  	}
+  	height: 50px;
 
   	.filters {
   		bottom: 10px;
@@ -110,6 +108,11 @@ const TodosFooter = ({ count }) => {
           </Link>
         </li>
       </ul>
+      {
+        count > 0
+          ? <button className="clear-completed">Clear completed</button>
+          : null
+      }
     </StyledFooter>
   );
 };
