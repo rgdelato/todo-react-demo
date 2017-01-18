@@ -65,7 +65,7 @@ const Todos = () => {
             />
             <TodoList todos={todos} />
             <TodosFooter
-              count={todos.length}
+              todos={todos}
               onClearCompleted={() => {
                 }}
             />

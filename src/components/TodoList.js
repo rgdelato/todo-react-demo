@@ -1,4 +1,6 @@
 import React from "react";
+import { Match } from "react-router";
+import TodoItem from "./TodoItem";
 import styled from "styled-components";
 
 const StyledSection = styled.section`
@@ -158,25 +160,49 @@ const StyledSection = styled.section`
 	}
 `;
 
-const TodoList = ({ todos }) => {
-  return (
-    <StyledSection>
-      <input className="toggle-all" id="toggle-all" type="checkbox" />
-      <label htmlFor="toggle-all">Mark all as complete</label>
-      <ul className="todo-list">
-        {todos.map(todo => (
-            <li className="">
-              <div className="view">
-                <input className="toggle" type="checkbox" />
-                <label>{todo.title}</label>
-                <button className="destroy"></button>
-              </div>
-              <input className="edit" defaultValue={todo.title} />
-            </li>
-          ))}
-      </ul>
-    </StyledSection>
-  );
-};
+class TodoList extends React.Component {
+  state = { editing: false };
+
+  render() {
+    const { todos } = this.props;
+    return (
+      <StyledSection>
+        <input className="toggle-all" id="toggle-all" type="checkbox" />
+        <label htmlFor="toggle-all">Mark all as complete</label>
+        <Match
+          pattern="/"
+          exactly
+          render={() => (
+              <ul className="todo-list">
+                {todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}
+              </ul>
+            )}
+        />
+        <Match
+          pattern="/active"
+          exactly
+          render={() => (
+              <ul className="todo-list">
+                {todos
+                    .filter(todo => !todo.completed)
+                    .map(todo => <TodoItem key={todo.id} todo={todo} />)}
+              </ul>
+            )}
+        />
+        <Match
+          pattern="/completed"
+          exactly
+          render={() => (
+              <ul className="todo-list">
+                {todos
+                    .filter(todo => todo.completed)
+                    .map(todo => <TodoItem key={todo.id} todo={todo} />)}
+              </ul>
+            )}
+        />
+      </StyledSection>
+    );
+  }
+}
 
 export default TodoList;
