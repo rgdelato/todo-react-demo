@@ -3,21 +3,19 @@ import React from "react";
 class Todos extends React.Component {
   state = {
     todos: [
-      { id: 1, title: "Hello there!", completed: true },
-      { id: 2, title: "How are you?", completed: false },
-      { id: 3, title: "...well.", completed: false }
+      { id: 0, title: "Hello there!", completed: true },
+      { id: 1, title: "How are you?", completed: false },
+      { id: 2, title: "...well.", completed: false }
     ]
   };
 
-  addTodo = newTodo => {
-    const updatedTodos = [].concat(this.state.todos, [ newTodo ]);
-    this.setState({ todos: updatedTodos });
+  addTodo = title => {
+    const newTodo = { id: this.state.todos.length, title, completed: false };
+    this.setState({ todos: [ ...this.state.todos, newTodo ] });
   };
 
   render() {
-    const { addTodo } = this;
-
-    return this.props.children({ ...this.state, addTodo });
+    return this.props.children({ ...this.state, addTodo: this.addTodo });
   }
 }
 
