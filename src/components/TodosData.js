@@ -1,4 +1,5 @@
 import React from "react";
+import { Match } from "react-router";
 
 class Todos extends React.Component {
   state = {
@@ -14,8 +15,45 @@ class Todos extends React.Component {
     this.setState({ todos: [ ...this.state.todos, newTodo ] });
   };
 
+  // this.props.children({ ...this.state, addTodo: this.addTodo });
   render() {
-    return this.props.children({ ...this.state, addTodo: this.addTodo });
+    const { todos } = this.state;
+
+    return (
+      <div>
+        <Match
+          pattern="/"
+          exactly
+          render={
+            () => this.props.children({ ...this.state, addTodo: this.addTodo })
+          }
+        />
+        <Match
+          pattern="/active"
+          exactly
+          render={
+            () =>
+              this.props.children({
+                ...this.state,
+                todos: todos.filter(todo => !todo.completed),
+                addTodo: this.addTodo
+              })
+          }
+        />
+        <Match
+          pattern="/completed"
+          exactly
+          render={
+            () =>
+              this.props.children({
+                ...this.state,
+                todos: todos.filter(todo => todo.completed),
+                addTodo: this.addTodo
+              })
+          }
+        />
+      </div>
+    );
   }
 }
 

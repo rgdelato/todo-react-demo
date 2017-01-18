@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import styled from "styled-components";
+import FilterLink from "././FilterLink";
 
 const StyledFooter = styled.footer`
 	color: #777;
@@ -46,26 +47,8 @@ const StyledFooter = styled.footer`
   	display: inline;
   }
 
-  .filters li a {
-  	color: inherit;
-  	margin: 3px;
-  	padding: 3px 7px;
-  	text-decoration: none;
-  	border: 1px solid transparent;
-  	border-radius: 3px;
-  }
-
-  .filters li a.selected,
-  .filters li a:hover {
-  	border-color: rgba(175, 47, 47, 0.1);
-  }
-
-  .filters li a.selected {
-  	border-color: rgba(175, 47, 47, 0.2);
-  }
-
   .clear-completed,
-  html .clear-completed:active {
+  .clear-completed:active {
   	float: right;
   	position: relative;
   	line-height: 20px;
@@ -92,21 +75,21 @@ const TodosFooter = ({ todos, onClearCompleted }) => {
   return (
     <StyledFooter>
       <span className="todo-count">
-        <strong>{count}</strong>{count === 1 ? "item" : "items"}{" "}left
+        <strong>{count}</strong>{" "}{count === 1 ? "item" : "items"}{" "}left
       </span>
       <ul className="filters">
         <li>
-          <Link activeOnlyWhenExact activeClassName="selected" to="/">All</Link>
+          <FilterLink activeOnlyWhenExact to="/">All</FilterLink>
         </li>
         <li>
-          <Link activeOnlyWhenExact activeClassName="selected" to="/active">
+          <FilterLink to="/active">
             Active
-          </Link>
+          </FilterLink>
         </li>
         <li>
-          <Link activeOnlyWhenExact activeClassName="selected" to="/completed">
+          <FilterLink to="/completed">
             Completed
-          </Link>
+          </FilterLink>
         </li>
       </ul>
       {count > 0 ? (

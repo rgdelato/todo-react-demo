@@ -169,37 +169,9 @@ class TodoList extends React.Component {
       <StyledSection>
         <input className="toggle-all" id="toggle-all" type="checkbox" />
         <label htmlFor="toggle-all">Mark all as complete</label>
-        <Match
-          pattern="/"
-          exactly
-          render={() => (
-              <ul className="todo-list">
-                {todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}
-              </ul>
-            )}
-        />
-        <Match
-          pattern="/active"
-          exactly
-          render={() => (
-              <ul className="todo-list">
-                {todos
-                    .filter(todo => !todo.completed)
-                    .map(todo => <TodoItem key={todo.id} todo={todo} />)}
-              </ul>
-            )}
-        />
-        <Match
-          pattern="/completed"
-          exactly
-          render={() => (
-              <ul className="todo-list">
-                {todos
-                    .filter(todo => todo.completed)
-                    .map(todo => <TodoItem key={todo.id} todo={todo} />)}
-              </ul>
-            )}
-        />
+        <ul className="todo-list">
+          {todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}
+        </ul>
       </StyledSection>
     );
   }
