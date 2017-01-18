@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "rm -rf build && NODE_ENV=\"development\" webpack-dev-server --open",
+    "start": "rm -rf build && NODE_ENV=\"development\" webpack-dev-server --open --inline",
     "build": "rm -rf build && NODE_ENV=\"production\" webpack -p",
     "lint": "eslint src",
     "precommit": "npm run lint && staged_files=$(git diff --name-only --cached) && staged_js_files=$(node precommit-filter.js ${staged_files}) && if [ \"$staged_js_files\" == \"\" ]; then exit 0; fi && prettier --write ${staged_js_files} && git add ${staged_js_files}"
