@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, IndexLink } from "react-router";
+import { Link } from "react-router";
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
@@ -93,7 +93,7 @@ const TodosFooter = ({ count }) => {
   return (
     <StyledFooter>
       <span className="todo-count">
-        <strong>{count}</strong> item{count === 1 ? "" : "s"} left
+        <strong>{count}</strong> item{count === 1 ? "" : "s"}left
       </span>
       <ul className="filters">
         <li>
