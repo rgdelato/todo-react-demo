@@ -1,5 +1,6 @@
 
-var path = require('path');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.js',
@@ -17,5 +18,15 @@ module.exports = {
 				exclude: /node_modules/
 			}
 		]
+	},
+
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: './public/index.html'
+		})
+	],
+
+	devServer: {
+		contentBase: path.join(__dirname, 'build')
 	}
 };
