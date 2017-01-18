@@ -1,7 +1,12 @@
 import React from "react";
 
 class Todos extends React.Component {
-  state = { todos: [ { id: 1, text: "Hello there", completed: false } ] };
+  state = {
+    todos: [
+      { id: 1, title: "Hello there", completed: false },
+      { id: 2, title: "How are you?", completed: false }
+    ]
+  };
 
   addTodo = newTodo => {
     const updatedTodos = [].concat(this.state.todos, [ newTodo ]);

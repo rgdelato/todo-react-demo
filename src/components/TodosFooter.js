@@ -87,7 +87,7 @@ const StyledFooter = styled.footer`
   }
 `;
 
-const TodosFooter = ({ count }) => {
+const TodosFooter = ({ count, onClearCompleted }) => {
   return (
     <StyledFooter>
       <span className="todo-count">
@@ -110,7 +110,11 @@ const TodosFooter = ({ count }) => {
       </ul>
       {
         count > 0
-          ? <button className="clear-completed">Clear completed</button>
+          ? (
+            <button className="clear-completed" onClick={onClearCompleted}>
+              Clear completed
+            </button>
+          )
           : null
       }
     </StyledFooter>
