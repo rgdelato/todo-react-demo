@@ -18,7 +18,13 @@
   },
   "homepage": "https://github.com/rgdelato/todo-react-demo#readme",
   "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-react-app": "^2.0.1",
     "husky": "^0.12.0",
-    "prettier": "0.0.8"
+    "prettier": "0.0.8",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "webpack": "^2.2.0"
   }
 }
