@@ -12,11 +12,11 @@ const StyledSection = styled.section`
               0 25px 50px 0 rgba(0, 0, 0, 0.1);
 `;
 
-const HomePage = () => {
+const TodosPage = () => {
   return (
     <div>
       <StyledSection>
-        <Header />
+        <Header>todos</Header>
         <Todos />
       </StyledSection>
       <Footer />
@@ -24,4 +24,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default TodosPage;

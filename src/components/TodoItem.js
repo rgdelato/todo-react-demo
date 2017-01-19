@@ -17,6 +17,26 @@ const StyledListItem = styled.li`
   }
 
   .edit {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 1.4em;
+    border: 0;
+    outline: none;
+    color: inherit;
+    padding: 6px;
+    border: 1px solid #999;
+    box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+  }
+
+  .edit {
     display: block;
     width: 506px;
     padding: 13px 17px 12px 17px;
@@ -110,19 +130,18 @@ const StyledListItem = styled.li`
 class TodoItem extends React.Component {
   state = { editing: false };
 
-  componentDidUpdate() {
-    if (this.state.editing) {
+  componentDidUpdate(_, prevState) {
+    if (!prevState.editing && this.state.editing) {
       this.editInputEl.focus();
     }
   }
 
   render() {
-    const { todo } = this.props;
+    const { todo, updateTodo, deleteTodo } = this.props;
     const { editing } = this.state;
     return (
       <StyledListItem
         className={classnames({ completed: todo.completed, editing })}
-        onDoubleClick={() => this.setState({ editing: true })}
       >
         {
           editing
@@ -140,16 +159,17 @@ class TodoItem extends React.Component {
                   className="toggle"
                   type="checkbox"
                   checked={todo.completed}
-                  onChange={() => {
-                    }}
+                  onChange={
+                    () => updateTodo(todo.id, { completed: !todo.completed })
+                  }
                 />
-                <label>{todo.text}</label>
+                <label onDoubleClick={() => this.setState({ editing: true })}>
+                  {todo.text}
+                </label>
                 <button
                   className="destroy"
-                  onClick={() => {
-                    }}
-                >
-                </button>
+                  onClick={() => deleteTodo(todo.id)}
+                />
               </div>
             )
         }

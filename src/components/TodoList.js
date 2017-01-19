@@ -59,14 +59,34 @@ const StyledSection = styled.section`
 class TodoList extends React.Component {
   state = { editing: false };
 
+  handleToggleAll = e => {
+    this.props.todos.forEach(todo => {
+      this.props.updateTodo(todo.id, { completed: e.target.checked });
+    });
+  };
+
   render() {
-    const { todos } = this.props;
+    const { todos, updateTodo, deleteTodo } = this.props;
     return (
       <StyledSection>
-        <input className="toggle-all" id="toggle-all" type="checkbox" />
+        <input
+          className="toggle-all"
+          id="toggle-all"
+          type="checkbox"
+          onChange={this.handleToggleAll}
+        />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
-          {todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}
+          {
+            todos.map(todo => (
+              <TodoItem
+                key={todo.id}
+                todo={todo}
+                updateTodo={updateTodo}
+                deleteTodo={deleteTodo}
+              />
+            ))
+          }
         </ul>
       </StyledSection>
     );

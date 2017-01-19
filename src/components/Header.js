@@ -14,10 +14,10 @@ const StyledH1 = styled.h1`
   text-rendering: optimizeLegibility;
 `;
 
-const Header = () => {
+const Header = ({ children }) => {
   return (
     <header>
-      <StyledH1>todos</StyledH1>
+      <StyledH1>{children}</StyledH1>
     </header>
   );
 };

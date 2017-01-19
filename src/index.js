@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router";
-import HomePage from "./pages/HomePage";
+import TodosPage from "./pages/TodosPage";
 
 import "./index.css";
 
 ReactDOM.render(
   (
     <BrowserRouter>
-      <HomePage />
+      <TodosPage />
     </BrowserRouter>
   ),
   document.getElementById("root")

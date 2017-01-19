@@ -10,12 +10,30 @@ class Todos extends React.Component {
     ]
   };
 
+  nextTodoId = this.state.todos.length;
+
   addTodo = text => {
-    const newTodo = { id: this.state.todos.length, text, completed: false };
+    const newTodo = { id: this.nextTodoId++, text, completed: false };
     this.setState({ todos: [ ...this.state.todos, newTodo ] });
   };
 
-  updateTodo = () => {
+  updateTodo = (id, update) => {
+    // using the function form of setState since "toggle all" runs updateTodo in a loop
+    this.setState(state => {
+      return {
+        todos: state.todos.map(
+          todo => todo.id === id ? { ...todo, ...update } : todo
+        )
+      };
+    });
+  };
+
+  deleteTodo = id => {
+    this.setState({ todos: this.state.todos.filter(todo => todo.id !== id) });
+  };
+
+  clearCompleted = () => {
+    this.setState({ todos: this.state.todos.filter(todo => !todo.completed) });
   };
 
   render() {
@@ -23,7 +41,9 @@ class Todos extends React.Component {
     const renderProps = {
       ...this.state,
       addTodo: this.addTodo,
-      updateTodo: this.updateTodo
+      updateTodo: this.updateTodo,
+      deleteTodo: this.deleteTodo,
+      clearCompleted: this.clearCompleted
     };
 
     return (
@@ -35,7 +55,6 @@ class Todos extends React.Component {
         />
         <Match
           pattern="/active"
-          exactly
           render={
             () =>
               this.props.children({
@@ -46,7 +65,6 @@ class Todos extends React.Component {
         />
         <Match
           pattern="/completed"
-          exactly
           render={
             () =>
               this.props.children({
