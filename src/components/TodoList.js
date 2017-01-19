@@ -52,6 +52,7 @@ const StyledSection = styled.section`
       transform: rotate(90deg);
       -webkit-appearance: none;
       appearance: none;
+      -moz-appearance: checkbox; /* over-riding autoprefixer */
     }
   }
 `;
