@@ -129,7 +129,7 @@ class TodoItem extends React.Component {
             ? (
               <input
                 className="edit"
-                defaultValue={todo.title}
+                defaultValue={todo.text}
                 onBlur={() => this.setState({ editing: false })}
                 ref={el => this.editInputEl = el}
               />
@@ -143,7 +143,7 @@ class TodoItem extends React.Component {
                   onChange={() => {
                     }}
                 />
-                <label>{todo.title}</label>
+                <label>{todo.text}</label>
                 <button
                   className="destroy"
                   onClick={() => {

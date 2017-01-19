@@ -4,14 +4,14 @@ import { Match } from "react-router";
 class Todos extends React.Component {
   state = {
     todos: [
-      { id: 0, title: "Hello there!", completed: true },
-      { id: 1, title: "How are you?", completed: false },
-      { id: 2, title: "...well.", completed: false }
+      { id: 0, text: "Hello there!", completed: true },
+      { id: 1, text: "How are you?", completed: false },
+      { id: 2, text: "...well.", completed: false }
     ]
   };
 
-  addTodo = title => {
-    const newTodo = { id: this.state.todos.length, title, completed: false };
+  addTodo = text => {
+    const newTodo = { id: this.state.todos.length, text, completed: false };
     this.setState({ todos: [ ...this.state.todos, newTodo ] });
   };
 

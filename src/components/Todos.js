@@ -56,12 +56,22 @@ const StyledSection = styled.section`
 const Todos = () => {
   return (
     <TodosData>
-      {({ todos }) => (
+      {({ todos, addTodo }) => (
           <StyledSection>
             <input
               className="new-todo"
               placeholder="What needs to be done?"
               autoFocus
+              onKeyDown={e => {
+                  if (e.keyCode === 13) {
+                    e.preventDefault();
+                    const text = e.target.value.trim();
+                    if (text !== "") {
+                      addTodo(e.target.value.trim());
+                      e.target.value = "";
+                    }
+                  }
+                }}
             />
             <TodoList todos={todos} />
             <TodosFooter
