@@ -9,17 +9,17 @@ const StyledFooter = styled.footer`
   text-align: center;
 
   p {
-  line-height: 1;
+    line-height: 1;
   }
 
   a {
-  color: inherit;
-  text-decoration: none;
-  font-weight: 400;
+    color: inherit;
+    text-decoration: none;
+    font-weight: 400;
   }
 
   a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
   }
 `;
 
