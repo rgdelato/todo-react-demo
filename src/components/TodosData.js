@@ -18,19 +18,12 @@ class Todos extends React.Component {
   };
 
   updateTodo = (id, update) => {
-    this.setState({
-      todos: this.state.todos.map(
+    // using the function form of "setState" to prevent "toggle all" from getting stale state
+    this.setState(state => ({
+      todos: state.todos.map(
         todo => todo.id === id ? { ...todo, ...update } : todo
       )
-    });
-  };
-
-  updateAllTodos = update => {
-    this.setState({
-      todos: this.state.todos.map(todo => {
-        return { ...todo, ...update };
-      })
-    });
+    }));
   };
 
   deleteTodo = id => {
@@ -42,13 +35,11 @@ class Todos extends React.Component {
   };
 
   render() {
-    const { children } = this.props;
     const { todos } = this.state;
     const renderProps = {
       ...this.state,
       addTodo: this.addTodo,
       updateTodo: this.updateTodo,
-      updateAllTodos: this.updateAllTodos,
       deleteTodo: this.deleteTodo,
       clearCompleted: this.clearCompleted
     };
@@ -59,16 +50,16 @@ class Todos extends React.Component {
         render={
           ({ params: { filter } }) =>
             filter === "active"
-              ? children({
+              ? this.props.children({
                 ...renderProps,
                 todos: todos.filter(todo => !todo.completed)
               })
               : filter === "completed"
-                ? children({
+                ? this.props.children({
                   ...renderProps,
                   todos: todos.filter(todo => todo.completed)
                 })
-                : children(renderProps)
+                : this.props.children(renderProps)
         }
       />
     );

@@ -56,13 +56,18 @@ const StyledSection = styled.section`
   }
 `;
 
-const TodoList = ({ todos, updateTodo, updateAllTodos, deleteTodo }) => (
+const TodoList = ({ todos, updateTodo, deleteTodo }) => (
   <StyledSection>
     <input
       className="toggle-all"
       id="toggle-all"
       type="checkbox"
-      onChange={e => updateAllTodos({ completed: e.target.checked })}
+      onChange={
+        e =>
+          todos.forEach(
+            todo => updateTodo(todo.id, { completed: e.target.checked })
+          )
+      }
     />
     <label htmlFor="toggle-all">Mark all as complete</label>
     <ul className="todo-list">

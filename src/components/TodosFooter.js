@@ -71,6 +71,7 @@ const StyledFooter = styled.footer`
 
 const TodosFooter = ({ todos, onClearCompleted }) => {
   const count = todos.length;
+  const completedCount = todos.filter(todo => todo.completed).length;
 
   return (
     <StyledFooter>
@@ -92,7 +93,7 @@ const TodosFooter = ({ todos, onClearCompleted }) => {
           </FilterLink>
         </li>
       </ul>
-      {count > 0 ? (
+      {completedCount > 0 ? (
             <button className="clear-completed" onClick={onClearCompleted}>
               Clear completed
             </button>
