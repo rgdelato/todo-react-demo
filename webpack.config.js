@@ -19,6 +19,12 @@ module.exports = {
 				exclude: /node_modules/
 			},
 			{
+				test: /\.js$/,
+				use: 'eslint-loader',
+				enforce: 'pre',
+				exclude: /node_modules/
+			},
+			{
 				test: /\.css$/,
 				loader: ExtractTextPlugin.extract({
 					loader: [

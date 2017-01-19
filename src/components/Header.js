@@ -16,7 +16,7 @@ const StyledHeader = styled.header`
   }
 `;
 
-const HomePage = () => {
+const Header = () => {
   return (
     <StyledHeader>
       <h1>todos</h1>
@@ -24,4 +24,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Header;

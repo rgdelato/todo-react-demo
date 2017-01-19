@@ -15,18 +15,23 @@ class Todos extends React.Component {
     this.setState({ todos: [ ...this.state.todos, newTodo ] });
   };
 
-  // this.props.children({ ...this.state, addTodo: this.addTodo });
+  updateTodo = () => {
+  };
+
   render() {
     const { todos } = this.state;
+    const renderProps = {
+      ...this.state,
+      addTodo: this.addTodo,
+      updateTodo: this.updateTodo
+    };
 
     return (
       <div>
         <Match
           pattern="/"
           exactly
-          render={
-            () => this.props.children({ ...this.state, addTodo: this.addTodo })
-          }
+          render={() => this.props.children(renderProps)}
         />
         <Match
           pattern="/active"
@@ -34,9 +39,8 @@ class Todos extends React.Component {
           render={
             () =>
               this.props.children({
-                ...this.state,
-                todos: todos.filter(todo => !todo.completed),
-                addTodo: this.addTodo
+                ...renderProps,
+                todos: todos.filter(todo => !todo.completed)
               })
           }
         />
@@ -46,9 +50,8 @@ class Todos extends React.Component {
           render={
             () =>
               this.props.children({
-                ...this.state,
-                todos: todos.filter(todo => todo.completed),
-                addTodo: this.addTodo
+                ...renderProps,
+                todos: todos.filter(todo => todo.completed)
               })
           }
         />

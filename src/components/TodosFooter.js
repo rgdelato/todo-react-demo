@@ -71,6 +71,7 @@ const StyledFooter = styled.footer`
 
 const TodosFooter = ({ todos, onClearCompleted }) => {
   const count = todos.length;
+
   return (
     <StyledFooter>
       <span className="todo-count">
