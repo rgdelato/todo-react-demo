@@ -130,13 +130,16 @@ const StyledListItem = styled.li`
 class TodoItem extends React.Component {
   state = { editing: false };
 
-  handleTodoTextChange = e => {
-    const { todo, updateTodo } = this.props;
-    const text = e.target.value.trim();
+  handleEditKeyDown = e => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      const text = e.target.value.trim();
 
-    if (text !== "") {
-      updateTodo(todo.id, { text });
-      this.setState({ editing: false });
+      if (text !== "") {
+        const { todo, updateTodo } = this.props;
+        updateTodo(todo.id, { text });
+        this.setState({ editing: false });
+      }
     }
   };
 
@@ -153,20 +156,18 @@ class TodoItem extends React.Component {
       <StyledListItem
         className={classnames({ completed: todo.completed, editing })}
       >
-        {editing ? (
+        {
+          editing
+            ? (
               <input
                 className="edit"
                 defaultValue={todo.text}
-                onBlur={this.handleTodoTextChange}
-                onKeyDown={e => {
-                    if (e.keyCode === 13) {
-                      e.preventDefault();
-                      this.handleTodoTextChange(e);
-                    }
-                  }}
+                onBlur={() => this.setState({ editing: false })}
+                onKeyDown={this.handleEditKeyDown}
                 ref={el => this.editInputEl = el}
               />
-            ) : (
+            )
+            : (
               <div className="view">
                 <input
                   className="toggle"
@@ -184,7 +185,8 @@ class TodoItem extends React.Component {
                   onClick={() => deleteTodo(todo.id)}
                 />
               </div>
-            )}
+            )
+        }
       </StyledListItem>
     );
   }

@@ -18,13 +18,18 @@ class Todos extends React.Component {
   };
 
   updateTodo = (id, update) => {
-    // using the function form of setState since "toggle all" runs updateTodo in a loop
-    this.setState(state => {
-      return {
-        todos: state.todos.map(
-          todo => todo.id === id ? { ...todo, ...update } : todo
-        )
-      };
+    this.setState({
+      todos: this.state.todos.map(
+        todo => todo.id === id ? { ...todo, ...update } : todo
+      )
+    });
+  };
+
+  updateAllTodos = update => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        return { ...todo, ...update };
+      })
     });
   };
 
@@ -42,6 +47,7 @@ class Todos extends React.Component {
       ...this.state,
       addTodo: this.addTodo,
       updateTodo: this.updateTodo,
+      updateAllTodos: this.updateAllTodos,
       deleteTodo: this.deleteTodo,
       clearCompleted: this.clearCompleted
     };
