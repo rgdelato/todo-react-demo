@@ -8,6 +8,7 @@ Just a demo project to show off some of the latest-and-greatest tech in the Reac
 + `prettier` running as a Git pre-commit hook (via `husky`)
 + Routing with `react-router` v4
 + CSS-in-JS with `styled-components`
++ Normal CSS run through PostCSS's `autoprefixer`
 + Function-as-children pattern for separating data
 
 ## Notes
