@@ -42,6 +42,7 @@ class Todos extends React.Component {
   };
 
   render() {
+    const { children } = this.props;
     const { todos } = this.state;
     const renderProps = {
       ...this.state,
@@ -53,33 +54,23 @@ class Todos extends React.Component {
     };
 
     return (
-      <div>
-        <Match
-          pattern="/"
-          exactly
-          render={() => this.props.children(renderProps)}
-        />
-        <Match
-          pattern="/active"
-          render={
-            () =>
-              this.props.children({
+      <Match
+        pattern="/:filter?"
+        render={
+          ({ params: { filter } }) =>
+            filter === "active"
+              ? children({
                 ...renderProps,
                 todos: todos.filter(todo => !todo.completed)
               })
-          }
-        />
-        <Match
-          pattern="/completed"
-          render={
-            () =>
-              this.props.children({
-                ...renderProps,
-                todos: todos.filter(todo => todo.completed)
-              })
-          }
-        />
-      </div>
+              : filter === "completed"
+                ? children({
+                  ...renderProps,
+                  todos: todos.filter(todo => todo.completed)
+                })
+                : children(renderProps)
+        }
+      />
     );
   }
 }
