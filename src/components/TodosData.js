@@ -14,11 +14,10 @@ class Todos extends React.Component {
 
   addTodo = text => {
     const newTodo = { id: this.nextTodoId++, text, completed: false };
-    this.setState({ todos: [ ...this.state.todos, newTodo ] });
+    this.setState(state => ({ todos: [ ...state.todos, newTodo ] }));
   };
 
   updateTodo = (id, update) => {
-    // using the function form of "setState" to prevent "toggle all" from getting stale state
     this.setState(state => ({
       todos: state.todos.map(
         todo => todo.id === id ? { ...todo, ...update } : todo
@@ -27,39 +26,38 @@ class Todos extends React.Component {
   };
 
   deleteTodo = id => {
-    this.setState({ todos: this.state.todos.filter(todo => todo.id !== id) });
+    this.setState(state => ({
+      todos: state.todos.filter(todo => todo.id !== id)
+    }));
   };
 
   clearCompleted = () => {
-    this.setState({ todos: this.state.todos.filter(todo => !todo.completed) });
+    this.setState(state => ({
+      todos: state.todos.filter(todo => !todo.completed)
+    }));
   };
 
   render() {
     const { todos } = this.state;
-    const renderProps = {
-      ...this.state,
-      addTodo: this.addTodo,
-      updateTodo: this.updateTodo,
-      deleteTodo: this.deleteTodo,
-      clearCompleted: this.clearCompleted
-    };
 
     return (
       <Match
         pattern="/:filter?"
         render={
           ({ params: { filter } }) =>
-            filter === "active"
-              ? this.props.children({
-                ...renderProps,
-                todos: todos.filter(todo => !todo.completed)
-              })
-              : filter === "completed"
-                ? this.props.children({
-                  ...renderProps,
-                  todos: todos.filter(todo => todo.completed)
-                })
-                : this.props.children(renderProps)
+            this.props.children({
+              todos: todos.filter(
+                filter === "active"
+                  ? todo => !todo.completed
+                  : filter === "completed"
+                    ? todo => todo.completed
+                    : todo => todo
+              ),
+              addTodo: this.addTodo,
+              updateTodo: this.updateTodo,
+              deleteTodo: this.deleteTodo,
+              clearCompleted: this.clearCompleted
+            })
         }
       />
     );
