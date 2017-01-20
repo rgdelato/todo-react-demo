@@ -51,22 +51,18 @@ class TodosData extends React.Component {
     return (
       <Match
         pattern="/:filter?"
-        render={
-          ({ params: { filter } }) =>
-            this.props.children({
-              todos: todos.filter(
-                filter === "active"
-                  ? todo => !todo.completed
-                  : filter === "completed"
-                    ? todo => todo.completed
-                    : todo => todo
-              ),
-              addTodo: this.addTodo,
-              updateTodo: this.updateTodo,
-              deleteTodo: this.deleteTodo,
-              clearCompleted: this.clearCompleted
-            })
-        }
+        render={({ params: { filter } }) =>
+          this.props.children({
+            todos: todos.filter(
+              filter === "active"
+                ? todo => !todo.completed
+                : filter === "completed" ? todo => todo.completed : todo => todo
+            ),
+            addTodo: this.addTodo,
+            updateTodo: this.updateTodo,
+            deleteTodo: this.deleteTodo,
+            clearCompleted: this.clearCompleted
+          })}
       />
     );
   }

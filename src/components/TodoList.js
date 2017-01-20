@@ -56,28 +56,24 @@ const TodoList = ({ todos, onUpdateTodo, onDeleteTodo }) => (
           className="toggle-all"
           id="toggle-all"
           type="checkbox"
-          onChange={
-            e =>
-              todos.forEach(
-                todo => onUpdateTodo(todo.id, { completed: e.target.checked })
-              )
-          }
+          onChange={e =>
+            todos.forEach(
+              todo => onUpdateTodo(todo.id, { completed: e.target.checked })
+            )}
           checked={todos.filter(todo => todo.completed).length === todos.length}
         />
         : null
     }
     <label htmlFor="toggle-all">Mark all as complete</label>
     <ul className="todo-list">
-      {
-        todos.map(todo => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            onUpdateTodo={onUpdateTodo}
-            onDeleteTodo={onDeleteTodo}
-          />
-        ))
-      }
+      {todos.map(todo => (
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onUpdateTodo={onUpdateTodo}
+          onDeleteTodo={onDeleteTodo}
+        />
+      ))}
     </ul>
   </StyledSection>
 );

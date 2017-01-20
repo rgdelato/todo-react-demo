@@ -31,7 +31,8 @@ module.exports = env => {
       ? {
         alias: {
           react: "preact-compat/dist/preact-compat",
-          "react-dom": "preact-compat/dist/preact-compat"
+          "react-dom": "preact-compat/dist/preact-compat",
+          "styled-components$": "styled-components/lib/index.js"
         }
       }
       : {},

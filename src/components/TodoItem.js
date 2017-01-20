@@ -138,9 +138,8 @@ class TodoItem extends React.Component {
                 className="toggle"
                 type="checkbox"
                 checked={todo.completed}
-                onChange={
-                  () => onUpdateTodo(todo.id, { completed: !todo.completed })
-                }
+                onChange={() =>
+                  onUpdateTodo(todo.id, { completed: !todo.completed })}
               />
               <label onDoubleClick={() => this.setState({ editing: true })}>
                 {todo.text}
