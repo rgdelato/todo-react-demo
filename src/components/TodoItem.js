@@ -1,39 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import classnames from "classnames";
+import TodoTextInput from "./TodoTextInput";
 
 const StyledListItem = styled.li`
   position: relative;
   font-size: 24px;
   border-bottom: 1px solid #ededed;
 
-  &:last-child {
-    border-bottom: none;
-  }
+  &:last-child { border-bottom: none; }
 
   &.editing {
     border-bottom: none;
     padding: 0;
-  }
-
-  .edit {
-    position: relative;
-    margin: 0;
-    width: 100%;
-    font-size: 24px;
-    font-family: inherit;
-    font-weight: inherit;
-    line-height: 1.4em;
-    border: 0;
-    outline: none;
-    color: inherit;
-    padding: 6px;
-    border: 1px solid #999;
-    box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-    font-smoothing: antialiased;
   }
 
   .edit {
@@ -96,21 +75,13 @@ const StyledListItem = styled.li`
     transition: color 0.2s ease-out;
   }
 
-  .destroy:hover {
-    color: #af5b5e;
-  }
+  .destroy:hover { color: #af5b5e; }
 
-  .destroy:after {
-    content: '×';
-  }
+  .destroy:after { content: '×'; }
 
-  &:hover .destroy {
-    display: block;
-  }
+  &:hover .destroy { display: block; }
 
-  &.editing:last-child {
-    margin-bottom: -1px;
-  }
+  &.editing:last-child { margin-bottom: -1px; }
 
   /*
   Hack to remove background from Mobile Safari.
@@ -119,9 +90,6 @@ const StyledListItem = styled.li`
   @media screen and (-webkit-min-device-pixel-ratio:0) {
     .toggle {
       background: none;
-    }
-
-    .toggle {
       height: 40px;
     }
   }
@@ -136,8 +104,8 @@ class TodoItem extends React.Component {
       const text = e.target.value.trim();
 
       if (text !== "") {
-        const { todo, updateTodo } = this.props;
-        updateTodo(todo.id, { text });
+        const { todo, onUpdateTodo } = this.props;
+        onUpdateTodo(todo.id, { text });
         this.setState({ editing: false });
       }
     }
@@ -150,7 +118,7 @@ class TodoItem extends React.Component {
   }
 
   render() {
-    const { todo, updateTodo, deleteTodo } = this.props;
+    const { todo, onUpdateTodo, onDeleteTodo } = this.props;
     const { editing } = this.state;
     return (
       <StyledListItem
@@ -158,7 +126,7 @@ class TodoItem extends React.Component {
       >
         {
           editing
-            ? <input
+            ? <TodoTextInput
               className="edit"
               defaultValue={todo.text}
               onBlur={() => this.setState({ editing: false })}
@@ -171,13 +139,16 @@ class TodoItem extends React.Component {
                 type="checkbox"
                 checked={todo.completed}
                 onChange={
-                  () => updateTodo(todo.id, { completed: !todo.completed })
+                  () => onUpdateTodo(todo.id, { completed: !todo.completed })
                 }
               />
               <label onDoubleClick={() => this.setState({ editing: true })}>
                 {todo.text}
               </label>
-              <button className="destroy" onClick={() => deleteTodo(todo.id)} />
+              <button
+                className="destroy"
+                onClick={() => onDeleteTodo(todo.id)}
+              />
             </div>
         }
       </StyledListItem>

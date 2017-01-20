@@ -16,16 +16,14 @@ const StyledFooter = styled.footer`
     color: inherit;
     text-decoration: none;
     font-weight: 400;
-  }
 
-  a:hover {
-    text-decoration: underline;
+    &:hover { text-decoration: underline; }
   }
 `;
 
 const Footer = () => {
   return (
-    <StyledFooter className="info">
+    <StyledFooter>
       <p>Double-click to edit a todo</p>
       <p>Written by Ryan De La Torre</p>
       <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>

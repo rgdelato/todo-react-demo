@@ -7,9 +7,7 @@ const StyledSection = styled.section`
   z-index: 2;
   border-top: 1px solid #e6e6e6;
 
-  label[for='toggle-all'] {
-    display: none;
-  }
+  label[for='toggle-all'] { display: none; }
 
   .toggle-all {
     position: absolute;
@@ -28,9 +26,7 @@ const StyledSection = styled.section`
     padding: 10px 27px 10px 27px;
   }
 
-  .toggle-all:checked:before {
-    color: #737373;
-  }
+  .toggle-all:checked:before { color: #737373; }
 
   .todo-list {
     margin: 0;
@@ -45,19 +41,14 @@ const StyledSection = styled.section`
   @media screen and (-webkit-min-device-pixel-ratio:0) {
     .toggle-all {
       background: none;
-    }
-
-    .toggle-all {
-      -webkit-transform: rotate(90deg);
       transform: rotate(90deg);
-      -webkit-appearance: none;
       appearance: none;
       -moz-appearance: checkbox; /* over-riding autoprefixer */
     }
   }
 `;
 
-const TodoList = ({ todos, updateTodo, deleteTodo }) => (
+const TodoList = ({ todos, onUpdateTodo, onDeleteTodo }) => (
   <StyledSection>
     <input
       className="toggle-all"
@@ -66,7 +57,7 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => (
       onChange={
         e =>
           todos.forEach(
-            todo => updateTodo(todo.id, { completed: e.target.checked })
+            todo => onUpdateTodo(todo.id, { completed: e.target.checked })
           )
       }
     />
@@ -77,8 +68,8 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => (
           <TodoItem
             key={todo.id}
             todo={todo}
-            updateTodo={updateTodo}
-            deleteTodo={deleteTodo}
+            onUpdateTodo={onUpdateTodo}
+            onDeleteTodo={onDeleteTodo}
           />
         ))
       }

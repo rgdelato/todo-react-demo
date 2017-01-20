@@ -1,6 +1,6 @@
 import React from "react";
 import TodosData from "./TodosData";
-import TodoInput from "./TodoInput";
+import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
 import TodosFooter from "./TodosFooter";
 
@@ -9,11 +9,11 @@ const Todos = () => {
     <TodosData>
       {({ todos, addTodo, updateTodo, deleteTodo, clearCompleted }) => (
           <section>
-            <TodoInput addTodo={addTodo} />
+            <AddTodoForm onAddTodo={addTodo} />
             <TodoList
               todos={todos}
-              updateTodo={updateTodo}
-              deleteTodo={deleteTodo}
+              onUpdateTodo={updateTodo}
+              onDeleteTodo={deleteTodo}
             />
             <TodosFooter todos={todos} onClearCompleted={clearCompleted} />
           </section>

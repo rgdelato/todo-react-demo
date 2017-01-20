@@ -1,7 +1,7 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import { Match } from "react-router";
 
-class Todos extends React.Component {
+class TodosData extends React.Component {
   state = {
     todos: [
       { id: 0, text: "Hello there!", completed: true },
@@ -10,7 +10,11 @@ class Todos extends React.Component {
     ]
   };
 
-  nextTodoId = this.state.todos.length;
+  nextTodoId = this.state.todos.reduce(
+    (acc, todo) => Math.max(acc, todo.id),
+    0
+  ) +
+    1;
 
   addTodo = text => {
     const newTodo = { id: this.nextTodoId++, text, completed: false };
@@ -62,6 +66,8 @@ class Todos extends React.Component {
       />
     );
   }
+
+  static propTypes = { children: PropTypes.func.isRequired };
 }
 
-export default Todos;
+export default TodosData;
