@@ -19,7 +19,7 @@ Just a demo project to show off some of the new technologies in the React ecosys
 + `styled-components` has some minor bugs and new API is still being added
 + ESLint errors in the precommit hook don't prevent the commit for some reason?
 + Current npm scripts are written (poorly) in bash and will probably fail horribly on Windows
-+ [`Polyfill.io`](https://github.com/Financial-Times/polyfill-service) sniffs the user-agent and only sends the necessary polyfills, which can be fragile
++ `Polyfill.io` sniffs the user-agent and only sends the necessary polyfills, which can be fragile
 
 ## TODO:
 + Actual forms. I think the eventual answer here will be uncontrolled inputs with something like [`form-serialize`](https://github.com/defunctzombie/form-serialize) on submit and a context hook to allow the form to know about it's inputs, so we may have to write an uncontrolled form library ourselves. :(
