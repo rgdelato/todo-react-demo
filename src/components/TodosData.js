@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import { Match } from "react-router";
+import Match from "react-router/Match";
 
 class TodosData extends React.Component {
   state = {
