@@ -76,10 +76,7 @@ const TodosFooter = ({ todos, onClearCompleted }) => {
   return (
     <StyledFooter>
       <span className="todo-count">
-        <strong>{activeCount}</strong>
-        {" "}
-        {activeCount === 1 ? "item" : "items"}
-        {" "}left
+        <strong>{activeCount}</strong> item{activeCount !== 1 ? "s" : ""} left
       </span>
       <ul className="filters">
         <li>
