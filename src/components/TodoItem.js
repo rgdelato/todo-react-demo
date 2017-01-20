@@ -131,7 +131,7 @@ class TodoItem extends React.Component {
               defaultValue={todo.text}
               onBlur={() => this.setState({ editing: false })}
               onKeyDown={this.handleEditKeyDown}
-              ref={el => this.editInputEl = el}
+              innerRef={el => this.editInputEl = el}
             />
             : <div className="view">
               <input
