@@ -50,17 +50,22 @@ const StyledSection = styled.section`
 
 const TodoList = ({ todos, onUpdateTodo, onDeleteTodo }) => (
   <StyledSection>
-    <input
-      className="toggle-all"
-      id="toggle-all"
-      type="checkbox"
-      onChange={
-        e =>
-          todos.forEach(
-            todo => onUpdateTodo(todo.id, { completed: e.target.checked })
-          )
-      }
-    />
+    {
+      todos.length > 0
+        ? <input
+          className="toggle-all"
+          id="toggle-all"
+          type="checkbox"
+          onChange={
+            e =>
+              todos.forEach(
+                todo => onUpdateTodo(todo.id, { completed: e.target.checked })
+              )
+          }
+          checked={todos.filter(todo => todo.completed).length === todos.length}
+        />
+        : null
+    }
     <label htmlFor="toggle-all">Mark all as complete</label>
     <ul className="todo-list">
       {
