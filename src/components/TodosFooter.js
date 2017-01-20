@@ -93,11 +93,13 @@ const TodosFooter = ({ todos, onClearCompleted }) => {
           </FilterLink>
         </li>
       </ul>
-      {completedCount > 0 ? (
-            <button className="clear-completed" onClick={onClearCompleted}>
-              Clear completed
-            </button>
-          ) : null}
+      {
+        completedCount > 0
+          ? <button className="clear-completed" onClick={onClearCompleted}>
+            Clear completed
+          </button>
+          : null
+      }
     </StyledFooter>
   );
 };

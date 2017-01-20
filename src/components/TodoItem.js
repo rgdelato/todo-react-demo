@@ -158,34 +158,27 @@ class TodoItem extends React.Component {
       >
         {
           editing
-            ? (
+            ? <input
+              className="edit"
+              defaultValue={todo.text}
+              onBlur={() => this.setState({ editing: false })}
+              onKeyDown={this.handleEditKeyDown}
+              ref={el => this.editInputEl = el}
+            />
+            : <div className="view">
               <input
-                className="edit"
-                defaultValue={todo.text}
-                onBlur={() => this.setState({ editing: false })}
-                onKeyDown={this.handleEditKeyDown}
-                ref={el => this.editInputEl = el}
+                className="toggle"
+                type="checkbox"
+                checked={todo.completed}
+                onChange={
+                  () => updateTodo(todo.id, { completed: !todo.completed })
+                }
               />
-            )
-            : (
-              <div className="view">
-                <input
-                  className="toggle"
-                  type="checkbox"
-                  checked={todo.completed}
-                  onChange={
-                    () => updateTodo(todo.id, { completed: !todo.completed })
-                  }
-                />
-                <label onDoubleClick={() => this.setState({ editing: true })}>
-                  {todo.text}
-                </label>
-                <button
-                  className="destroy"
-                  onClick={() => deleteTodo(todo.id)}
-                />
-              </div>
-            )
+              <label onDoubleClick={() => this.setState({ editing: true })}>
+                {todo.text}
+              </label>
+              <button className="destroy" onClick={() => deleteTodo(todo.id)} />
+            </div>
         }
       </StyledListItem>
     );

@@ -6,10 +6,8 @@ import TodosPage from "./pages/TodosPage";
 import "./index.css";
 
 ReactDOM.render(
-  (
-    <BrowserRouter>
-      <TodosPage />
-    </BrowserRouter>
-  ),
+  <BrowserRouter>
+    <TodosPage />
+  </BrowserRouter>,
   document.getElementById("root")
 );
