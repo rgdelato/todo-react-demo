@@ -5,7 +5,7 @@ Just a demo project to show off some of the new technologies in the React ecosys
 ## Featuring...
 + [Webpack 2](https://webpack.js.org/)
 + [`create-react-app`](https://github.com/facebookincubator/create-react-app)'s presets for Babel and ESLint
-+ [`prettier`](https://github.com/jlongster/prettier) running as a Git pre-commit hook (via `husky`) for formatting
++ [`prettier`](https://github.com/jlongster/prettier) running as a Git pre-commit hook (via [`husky`](https://github.com/typicode/husky)) for formatting
 + Routing with [`react-router`](https://github.com/ReactTraining/react-router/tree/v4) v4's `<Match>` component
 + CSS-in-JS with [`styled-components`](https://github.com/styled-components/styled-components)
 + Normal CSS run through PostCSS's [`autoprefixer`](https://github.com/postcss/autoprefixer)
@@ -16,17 +16,17 @@ Just a demo project to show off some of the new technologies in the React ecosys
 
 ## Landmines
 + `create-react-app`'s Babel preset doesn't have a way to turn off compiling ES6 modules, so tree-shaking isn't currently enabled
-+ `prettier` is still in beta, and produces weird formatting sometimes.
++ `prettier` is still in beta and produces weird formatting sometimes
 + `react-router` v4 is still in beta, but is mostly pretty solid
-+ `styled-components` has some minor bugs and new API is still being added
-+ ESLint errors in the precommit hook don't prevent the commit for some reason?
-+ Current npm scripts are written (poorly) in bash and will probably fail horribly on Windows
-+ `Polyfill.io` sniffs the user-agent and only sends the necessary polyfills, which can be fragile
++ `styled-components` has some minor bugs, new API is still being added, and it currently adds a lot to the bundle size
++ ESLint errors in the precommit hook don't prevent the commit (?)
++ Current npm scripts are written (poorly) in bash and will likely fail horribly on Windows
++ `Polyfill.io` is a third-party script and it sniffs the user-agent (to only send the necessary polyfills), both of which can be fragile
 
-## TODO:
-+ Actual forms. I think the eventual answer here will be uncontrolled inputs with something like [`form-serialize`](https://github.com/defunctzombie/form-serialize) on submit and a context hook to allow the form to know about it's inputs, so we may have to write an uncontrolled form library ourselves. :(
-+ Code splitting and pre-fetching the other JS chunks.
+## More to test in another project...
++ Code splitting and pre-fetching the unloaded JS chunks.
 + Theming. `styled-components` has theming support, but I still need to actually put it through it's paces.
++ Forms. I think the eventual answer here will be uncontrolled inputs with something like [`form-serialize`](https://github.com/defunctzombie/form-serialize) on submit and a context hook to allow the form to know about it's inputs.
 + Shared state. The obvious answer is [`redux`](https://github.com/reactjs/redux), but there are a great many ways that `redux` code can be written and organized.
 + Server variables. The server will probably just inject a script tag that assigns a global variable.
 
