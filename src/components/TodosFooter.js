@@ -70,13 +70,16 @@ const StyledFooter = styled.footer`
 `;
 
 const TodosFooter = ({ todos, onClearCompleted }) => {
-  const count = todos.length;
+  const activeCount = todos.filter(todo => !todo.completed).length;
   const completedCount = todos.filter(todo => todo.completed).length;
 
   return (
     <StyledFooter>
       <span className="todo-count">
-        <strong>{count}</strong> {count === 1 ? "item" : "items"} left
+        <strong>{activeCount}</strong>
+        {" "}
+        {activeCount === 1 ? "item" : "items"}
+        {" "}left
       </span>
       <ul className="filters">
         <li>
