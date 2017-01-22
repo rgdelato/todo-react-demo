@@ -1,10 +1,10 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-classnames";
 import Header from "../components/Header";
 import Todos from "../components/Todos";
 import Footer from "../components/Footer";
 
-const StyledSection = styled.section`
+const sectionClass = styled`
   background: #fff;
   margin: 130px 0 40px 0;
   position: relative;
@@ -15,10 +15,10 @@ const StyledSection = styled.section`
 const TodosPage = () => {
   return (
     <div>
-      <StyledSection>
+      <section className={sectionClass}>
         <Header>todos</Header>
         <Todos />
-      </StyledSection>
+      </section>
       <Footer />
     </div>
   );

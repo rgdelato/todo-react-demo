@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const DashboardPlugin = require("webpack-dashboard/plugin");
 const BundleAnalyzerPlugin = require(
   "webpack-bundle-analyzer"
 ).BundleAnalyzerPlugin;
@@ -31,8 +32,7 @@ module.exports = env => {
       ? {
         alias: {
           react: "preact-compat/dist/preact-compat",
-          "react-dom": "preact-compat/dist/preact-compat",
-          "styled-components$": "styled-components/lib/index.js"
+          "react-dom": "preact-compat/dist/preact-compat"
         }
       }
       : {},
@@ -47,6 +47,11 @@ module.exports = env => {
         disable: false,
         allChunks: true
       }),
+      ...(env === "development"
+        ? [
+          new DashboardPlugin()
+        ]
+        : []),
       ...(env === "production"
         ? [
           new BundleAnalyzerPlugin({

@@ -8,7 +8,8 @@ Just a demo project to show off some of the new technologies in the React ecosys
 + [`prettier`](https://github.com/jlongster/prettier) running as a Git pre-commit hook (via [`husky`](https://github.com/typicode/husky)) for formatting
 + Routing with [`react-router`](https://github.com/ReactTraining/react-router/tree/v4) v4's `<Match>` component
 + CSS-in-JS with [`styled-components`](https://github.com/styled-components/styled-components)
-+ Normal CSS run through PostCSS's [`autoprefixer`](https://github.com/postcss/autoprefixer)
+  + Note: [`styled-classnames`](https://github.com/rgdelato/styled-classnames) is a quick hack I wrote that uses `styled-components` under the hood
++ Normal CSS run through [`postcss-nested`](https://github.com/postcss/postcss-nested) and [`autoprefixer`](https://github.com/postcss/autoprefixer)
 + Function-as-children pattern for managing data (see [`TodosData.js`](https://github.com/rgdelato/todo-react-demo/blob/master/src/components/TodosData.js))
 + Aliasing [`preact`](https://github.com/developit/preact) for `react` in production mode to remove 100KB off the file size
 + Running [`webpack-bundle-analyzer`](https://github.com/th0r/webpack-bundle-analyzer) to analyze the final JS bundle

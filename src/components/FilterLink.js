@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "react-router/Link";
-import styled from "styled-components";
+import styled from "styled-classnames";
 
-const StyledLink = styled(Link)`
+const linkClass = styled`
   color: inherit;
   margin: 3px;
   padding: 3px 7px;
@@ -11,12 +11,15 @@ const StyledLink = styled(Link)`
   border-radius: 3px;
 
   &:hover { border-color: rgba(175, 47, 47, 0.1); }
-  &.active { border-color: rgba(175, 47, 47, 0.2); }
 `;
 
-const FilterLink = ({ activeClassName, ...props }) => {
+const activeClass = styled`
+  border-color: rgba(175, 47, 47, 0.2);
+`;
+
+const FilterLink = props => {
   return (
-    <StyledLink {...props} activeClassName={`active ${activeClassName}`} />
+    <Link {...props} className={linkClass()} activeClassName={activeClass()} />
   );
 };
 

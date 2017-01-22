@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-classnames";
 
-const StyledFooter = styled.footer`
+const footerClass = styled`
   margin: 65px auto 0;
   color: #bfbfbf;
   font-size: 10px;
@@ -23,11 +23,11 @@ const StyledFooter = styled.footer`
 
 const Footer = () => {
   return (
-    <StyledFooter>
+    <footer className={footerClass}>
       <p>Double-click to edit a todo</p>
       <p>Written by Ryan De La Torre</p>
       <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-    </StyledFooter>
+    </footer>
   );
 };
 

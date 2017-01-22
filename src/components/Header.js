@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-classnames";
 
-const StyledH1 = styled.h1`
+const h1Class = styled`
   position: absolute;
   top: -155px;
   width: 100%;
@@ -15,7 +15,7 @@ const StyledH1 = styled.h1`
 const Header = ({ children }) => {
   return (
     <header>
-      <StyledH1>{children}</StyledH1>
+      <h1 className={h1Class}>{children}</h1>
     </header>
   );
 };

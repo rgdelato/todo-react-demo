@@ -1,8 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-classnames";
 import FilterLink from "././FilterLink";
 
-const StyledFooter = styled.footer`
+const footerClass = styled`
   color: #777;
   padding: 10px 15px;
   height: 20px;
@@ -74,7 +74,7 @@ const TodosFooter = ({ todos, onClearCompleted }) => {
   const completedCount = todos.filter(todo => todo.completed).length;
 
   return (
-    <StyledFooter>
+    <footer className={footerClass}>
       <span className="todo-count">
         <strong>{activeCount}</strong> item{activeCount !== 1 ? "s" : ""} left
       </span>
@@ -100,7 +100,7 @@ const TodosFooter = ({ todos, onClearCompleted }) => {
           </button>
           : null
       }
-    </StyledFooter>
+    </footer>
   );
 };
 

@@ -1,8 +1,8 @@
 import React from "react";
 import TodoItem from "./TodoItem";
-import styled from "styled-components";
+import styled from "styled-classnames";
 
-const StyledSection = styled.section`
+const sectionClass = styled`
   position: relative;
   z-index: 2;
   border-top: 1px solid #e6e6e6;
@@ -49,7 +49,7 @@ const StyledSection = styled.section`
 `;
 
 const TodoList = ({ todos, onUpdateTodo, onDeleteTodo }) => (
-  <StyledSection>
+  <section className={sectionClass}>
     {
       todos.length > 0
         ? <input
@@ -75,7 +75,7 @@ const TodoList = ({ todos, onUpdateTodo, onDeleteTodo }) => (
         />
       ))}
     </ul>
-  </StyledSection>
+  </section>
 );
 
 export default TodoList;

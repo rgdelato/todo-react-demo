@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-classnames";
 
-const StyledInput = styled.input`
+const inputClass = styled`
   position: relative;
   margin: 0;
   width: 100%;
@@ -18,8 +18,8 @@ const StyledInput = styled.input`
   box-sizing: border-box;
 `;
 
-const TodoTextInput = props => {
-  return <StyledInput {...props} />;
-};
+const TodoTextInput = ({ className, innerRef, ...props }) => (
+  <input {...props} ref={innerRef} className={`${inputClass} ${className}`} />
+);
 
 export default TodoTextInput;

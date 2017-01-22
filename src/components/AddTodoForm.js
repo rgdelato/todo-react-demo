@@ -1,8 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-classnames";
 import TodoTextInput from "./TodoTextInput";
 
-const StyledInput = styled(TodoTextInput)`
+const inputClass = styled`
   padding: 16px 16px 16px 60px;
   border: none;
   background: rgba(0, 0, 0, 0.003);
@@ -24,7 +24,8 @@ class AddTodoForm extends React.Component {
 
   render() {
     return (
-      <StyledInput
+      <TodoTextInput
+        className={inputClass}
         placeholder="What needs to be done?"
         autoFocus
         onKeyDown={this.handleKeyDown}

@@ -1,9 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-classnames";
 import classnames from "classnames";
 import TodoTextInput from "./TodoTextInput";
 
-const StyledListItem = styled.li`
+const listItemClass = styled`
   position: relative;
   font-size: 24px;
   border-bottom: 1px solid #ededed;
@@ -113,16 +113,20 @@ class TodoItem extends React.Component {
 
   componentDidUpdate(_, prevState) {
     if (!prevState.editing && this.state.editing) {
-      this.editInputEl.focus();
+      this.editInput.focus();
     }
   }
 
   render() {
     const { todo, onUpdateTodo, onDeleteTodo } = this.props;
     const { editing } = this.state;
+
     return (
-      <StyledListItem
-        className={classnames({ completed: todo.completed, editing })}
+      <li
+        className={classnames(listItemClass(), {
+          completed: todo.completed,
+          editing
+        })}
       >
         {
           editing
@@ -131,7 +135,7 @@ class TodoItem extends React.Component {
               defaultValue={todo.text}
               onBlur={() => this.setState({ editing: false })}
               onKeyDown={this.handleEditKeyDown}
-              innerRef={el => this.editInputEl = el}
+              innerRef={el => this.editInput = el}
             />
             : <div className="view">
               <input
@@ -150,7 +154,7 @@ class TodoItem extends React.Component {
               />
             </div>
         }
-      </StyledListItem>
+      </li>
     );
   }
 }
