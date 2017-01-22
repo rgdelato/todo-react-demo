@@ -55,7 +55,7 @@
     "react-dom": "^15.4.2",
     "react-router": "^4.0.0-alpha.6",
     "style-loader": "^0.13.1",
-    "styled-classnames": "^1.0.0",
+    "styled-classnames": "^1.0.7",
     "webpack": "^2.2.0",
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dashboard": "^0.2.1",
