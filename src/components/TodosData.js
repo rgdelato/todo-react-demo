@@ -18,10 +18,7 @@ class TodosData extends React.Component {
 
   addTodo = text => {
     this.setState(state => ({
-      todos: [
-        ...state.todos,
-        { id: this.nextTodoId++, text, completed: false }
-      ]
+      todos: [...state.todos, { id: this.nextTodoId++, text, completed: false }]
     }));
   };
 

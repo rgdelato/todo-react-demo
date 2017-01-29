@@ -128,16 +128,15 @@ class TodoItem extends React.Component {
           editing
         })}
       >
-        {
-          editing
-            ? <TodoTextInput
+        {editing
+          ? <TodoTextInput
               className="edit"
               defaultValue={todo.text}
               onBlur={() => this.setState({ editing: false })}
               onKeyDown={this.handleEditKeyDown}
               innerRef={el => this.editInput = el}
             />
-            : <div className="view">
+          : <div className="view">
               <input
                 className="toggle"
                 type="checkbox"
@@ -152,8 +151,7 @@ class TodoItem extends React.Component {
                 className="destroy"
                 onClick={() => onDeleteTodo(todo.id)}
               />
-            </div>
-        }
+            </div>}
       </li>
     );
   }

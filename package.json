@@ -50,7 +50,7 @@
     "postcss-nested": "^1.0.0",
     "preact": "^7.1.0",
     "preact-compat": "^3.11.0",
-    "prettier": "0.0.10",
+    "prettier": "^0.13.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-router": "^4.0.0-alpha.6",
