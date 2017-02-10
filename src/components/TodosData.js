@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import Match from "react-router/Match";
+import Route from "react-router-dom/Route";
 
 class TodosData extends React.Component {
   state = {
@@ -46,9 +46,9 @@ class TodosData extends React.Component {
     const { todos } = this.state;
 
     return (
-      <Match
-        pattern="/:filter?"
-        render={({ params: { filter } }) =>
+      <Route
+        path="/:filter?"
+        render={({ match: { params: { filter } } }) =>
           this.props.children({
             todos: todos.filter(
               filter === "active"

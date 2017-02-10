@@ -1,5 +1,6 @@
 import React from "react";
-import Link from "react-router/Link";
+import Route from "react-router-dom/Route";
+import Link from "react-router-dom/Link";
 import styled from "styled-classnames";
 
 const linkClass = styled`
@@ -17,9 +18,18 @@ const activeClass = styled`
   border-color: rgba(175, 47, 47, 0.2);
 `;
 
-const FilterLink = props => {
+const FilterLink = ({ exact, ...props }) => {
   return (
-    <Link {...props} className={linkClass()} activeClassName={activeClass()} />
+    <Route
+      path={props.to}
+      exact={exact}
+      children={({ match }) => (
+        <Link
+          {...props}
+          className={`${linkClass()} ${match ? activeClass() : ""}`}
+        />
+      )}
+    />
   );
 };
 

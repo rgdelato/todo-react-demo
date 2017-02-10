@@ -80,7 +80,7 @@ const TodosFooter = ({ todos, onClearCompleted }) => {
       </span>
       <ul className="filters">
         <li>
-          <FilterLink activeOnlyWhenExact to="/">All</FilterLink>
+          <FilterLink exact to="/">All</FilterLink>
         </li>
         <li>
           <FilterLink to="/active">
