@@ -13,8 +13,7 @@ class TodosData extends React.Component {
   nextTodoId = this.state.todos.reduce(
     (acc, todo) => Math.max(acc, todo.id),
     0
-  ) +
-    1;
+  ) + 1;
 
   addTodo = text => {
     this.setState(state => ({
@@ -48,18 +47,17 @@ class TodosData extends React.Component {
     return (
       <Route
         path="/:filter?"
-        render={({ match: { params: { filter } } }) =>
-          this.props.children({
-            todos: todos.filter(
-              filter === "active"
-                ? todo => !todo.completed
-                : filter === "completed" ? todo => todo.completed : todo => todo
-            ),
-            addTodo: this.addTodo,
-            updateTodo: this.updateTodo,
-            deleteTodo: this.deleteTodo,
-            clearCompleted: this.clearCompleted
-          })}
+        render={({ match: { params: { filter } } }) => this.props.children({
+          todos: todos.filter(
+            filter === "active"
+              ? todo => !todo.completed
+              : filter === "completed" ? todo => todo.completed : todo => todo
+          ),
+          addTodo: this.addTodo,
+          updateTodo: this.updateTodo,
+          deleteTodo: this.deleteTodo,
+          clearCompleted: this.clearCompleted
+        })}
       />
     );
   }

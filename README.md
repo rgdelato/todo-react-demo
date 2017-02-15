@@ -5,7 +5,7 @@ Just a demo project to show off some of the new technologies in the React ecosys
 ## Featuring...
 + [Webpack 2](https://webpack.js.org/)
 + [`create-react-app`](https://github.com/facebookincubator/create-react-app)'s presets for Babel and ESLint
-+ [`prettier`](https://github.com/jlongster/prettier) running as a Git pre-commit hook (via [`husky`](https://github.com/typicode/husky)) for formatting
++ [`prettier`](https://github.com/jlongster/prettier) running as a Git pre-commit hook (via [`husky`](https://github.com/typicode/husky)) and [`lint-staged`](https://github.com/okonet/lint-staged) for formatting
 + Routing with [`react-router`](https://github.com/ReactTraining/react-router/tree/v4) v4's `<Match>` component
 + CSS-in-JS with [`styled-components`](https://github.com/styled-components/styled-components)
   + Note: [`styled-classnames`](https://github.com/rgdelato/styled-classnames) is a quick hack I wrote that uses `styled-components` under the hood
