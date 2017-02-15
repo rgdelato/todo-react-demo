@@ -9,7 +9,8 @@
     "build": "rm -rf build && NODE_ENV=\"production\" webpack -p --env production",
     "build:analyze": "npm run build && webpack-bundle-analyzer build/stats.json build",
     "lint": "eslint src",
-    "precommit": "npm run lint && lint-staged"
+    "prettier:staged": "lint-staged",
+    "precommit": "npm run lint && npm run prettier:staged"
   },
   "lint-staged": {
     "src/**/*.js": [
