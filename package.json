@@ -17,6 +17,12 @@
       "git add"
     ]
   },
+  "babel": {
+    "presets": ["react-app"]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "browserslist": [
     "> 1%",
     "last 4 versions",
