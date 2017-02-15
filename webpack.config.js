@@ -22,20 +22,22 @@ module.exports = env => {
         {
           test: /\.css$/,
           loader: ExtractTextPlugin.extract({
-            loader: [ "css-loader", "postcss-loader" ]
+            loader: ["css-loader", "postcss-loader"]
           }),
           exclude: /node_modules/
         }
       ]
     },
-    resolve: env === "production"
-      ? {
-        alias: {
-          react: "preact-compat/dist/preact-compat",
-          "react-dom": "preact-compat/dist/preact-compat"
-        }
-      }
-      : {},
+    resolve: (
+      env === "production"
+        ? {
+            alias: {
+              react: "preact-compat/dist/preact-compat",
+              "react-dom": "preact-compat/dist/preact-compat"
+            }
+          }
+        : {}
+    ),
     plugins: [
       new HtmlWebpackPlugin({
         template: "./public/index.html",
@@ -47,18 +49,14 @@ module.exports = env => {
         disable: false,
         allChunks: true
       }),
-      ...(env === "development"
-        ? [
-          new DashboardPlugin()
-        ]
-        : []),
+      ...(env === "development" ? [new DashboardPlugin()] : []),
       ...(env === "production"
         ? [
-          new BundleAnalyzerPlugin({
-            analyzerMode: "disabled",
-            generateStatsFile: true
-          })
-        ]
+            new BundleAnalyzerPlugin({
+              analyzerMode: "disabled",
+              generateStatsFile: true
+            })
+          ]
         : [])
     ],
     devServer: {
