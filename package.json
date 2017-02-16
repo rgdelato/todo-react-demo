@@ -9,11 +9,11 @@
     "build": "rm -rf build && NODE_ENV=\"production\" webpack -p --env production",
     "build:analyze": "npm run build && webpack-bundle-analyzer build/stats.json build",
     "lint": "eslint src",
-    "prettier:staged": "lint-staged",
-    "precommit": "npm run lint && npm run prettier:staged"
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "src/**/*.js": [
+      "eslint",
       "prettier --write",
       "git add"
     ]

@@ -21,7 +21,6 @@ Just a demo project to show off some of the new technologies in the React ecosys
 + `react-router` v4 is still in beta, but is mostly pretty solid
 + `styled-components` has some minor bugs, new API is still being added, and it currently adds a lot to the bundle size
 + ESLint errors in the precommit hook don't prevent the commit (?)
-+ Current npm scripts are written (poorly) in bash and will likely fail horribly on Windows
 + `Polyfill.io` is a third-party script and it sniffs the user-agent (to only send the necessary polyfills), both of which can be fragile
 
 ## More to test in another project...
@@ -32,5 +31,5 @@ Just a demo project to show off some of the new technologies in the React ecosys
 + Server variables. The server will probably just inject a script tag that assigns a global variable.
 
 ## Aspirational
-+ Figure out a way to pre-build server-rendered shells so users can load something immediately while the JS is parsing
++ Figure out a way to pre-build server-rendered shells so users can load something immediately while the JS is parsing (TODO: Look into [`react-snapshot`](https://www.npmjs.com/package/react-snapshot))
 + Figure out a way to add in service worker to cache assets and reduce network calls on repeat visits (and pre-fetch JS in the background?)
