@@ -1,19 +1,22 @@
 import React, { PropTypes } from "react";
 import Route from "react-router-dom/Route";
+import localforage from "localforage";
+
+const LOCALFORAGE_KEY = "todos";
 
 class TodosData extends React.Component {
-  state = {
-    todos: [
-      { id: 0, text: "Hello there!", completed: true },
-      { id: 1, text: "How are you?", completed: false },
-      { id: 2, text: "...well.", completed: false }
-    ]
-  };
+  constructor(props) {
+    super(props);
 
-  nextTodoId = this.state.todos.reduce(
-    (acc, todo) => Math.max(acc, todo.id),
-    0
-  ) + 1;
+    this.state = { todos: null };
+    this.nextTodoId = null;
+
+    localforage.getItem(LOCALFORAGE_KEY).then(todos => {
+      this.setState({ todos });
+      this.nextTodoId = 1 +
+        todos.reduce((acc, todo) => Math.max(acc, todo.id), 0);
+    });
+  }
 
   addTodo = text => {
     this.setState(state => ({
@@ -41,8 +44,16 @@ class TodosData extends React.Component {
     }));
   };
 
+  componentDidUpdate() {
+    localforage.setItem(LOCALFORAGE_KEY, this.state.todos);
+  }
+
   render() {
     const { todos } = this.state;
+
+    if (!todos) {
+      return null;
+    }
 
     return (
       <Route
